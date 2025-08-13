@@ -17,7 +17,11 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $department = Department::create($validated);
+        return response()->json($department, 201);
     }
 
 
@@ -31,7 +35,6 @@ class DepartmentController extends Controller
     {
         //
     }
-
 
     public function destroy(Department $department)
     {

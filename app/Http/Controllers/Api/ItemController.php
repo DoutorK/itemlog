@@ -43,7 +43,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'department_id' => 'required|exists:departments,id',
+            // Adicione outros campos conforme necessário
+        ]);
+        $item->update($validated);
+        return response()->json($item);
     }
 
     /**

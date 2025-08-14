@@ -33,7 +33,11 @@ class DepartmentController extends Controller
 
     public function update(Request $request, Department $department)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $department->update($validated);
+        return response()->json($department, 200);
     }
 
     public function destroy(Department $department)

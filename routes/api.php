@@ -5,4 +5,4 @@ use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\ItemController;
 
 Route::apiResource('departments', DepartmentController::class);
-Route::apiResource('departments.items', ItemController::class)->shallow();
+Route::apiResource('items', ItemController::class)->shallow();

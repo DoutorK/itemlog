@@ -1,0 +1,16 @@
+h2 {
+  margin-bottom: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+button {
+  padding: 0.5rem;
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

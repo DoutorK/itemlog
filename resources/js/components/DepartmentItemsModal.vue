@@ -63,7 +63,7 @@ async function addItem() {
 
 async function deleteItem(id: number) {
   if (!confirm("Excluir item?")) return;
-  await api.delete(`/departments/${props.department.id}/items/${id}`);
+  await api.delete(`/items/${id}`);
   fetchItems();
 }
 

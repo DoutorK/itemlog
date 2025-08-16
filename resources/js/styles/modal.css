@@ -21,35 +21,37 @@
   top: 110%;
   right: 0;
   background: #23283a;
-  border: 1px solid #2d3347;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(30,34,44,0.12);
+  border: 1px solid #23283a;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(30,34,44,0.10);
   min-width: 120px;
   z-index: 10;
   display: flex;
   flex-direction: column;
-  padding: 0.3rem 0;
+  padding: 0.18rem 0;
 }
 .item-menu-btn {
   background: none;
   border: none;
-  color: #e7eaf3;
-  font-size: 0.98rem;
-  padding: 0.5rem 1rem;
+  color: #bfc8d6;
+  font-size: 0.97rem;
+  padding: 0.42rem 1rem;
   text-align: left;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
+  border-radius: 8px;
+  margin: 0.08rem 0.12rem;
+  transition: background 0.16s, color 0.16s;
 }
 .item-menu-btn:hover {
-  background: #2563eb;
-  color: #fff;
+  background: #22252b;
+  color: #2563eb;
 }
 .item-menu-btn.delete {
   color: #e74c3c;
 }
 .item-menu-btn.delete:hover {
-  background: #c0392b;
-  color: #fff;
+  background: #22252b;
+  color: #c0392b;
 }
 .modal-overlay {
   position: fixed;

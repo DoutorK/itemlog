@@ -1,35 +1,44 @@
 <template>
-  <div class="container">
-    <h2>Items</h2>
-    <input v-model="newItem" placeholder="Novo item" />
-    <button @click="addItem">Adicionar</button>
+  <div class="items-container">
+    <h4>Itens do Departamento {{ departmentId }}</h4>
 
-    <ul>
-      <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+    <div class="add-item">
+      <input v-model="newItem" placeholder="Novo item" class="input-field" />
+      <button @click="addItem" class="add-btn">Adicionar</button>
+    </div>
+
+    <ul class="item-list">
+      <li v-for="item in items" :key="item.id" class="item">
+        {{ item.name }}
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { api } from "../services/api";
-import "../styles/items.css";
 
+const props = defineProps<{ departmentId: number }>();
 const items = ref<{ id: number; name: string }[]>([]);
 const newItem = ref("");
 
+// Busca itens do departamento
 async function fetchItems() {
-  const res = await api.get("/items");
+  const res = await api.get(`/departments/${props.departmentId}/items`);
   items.value = res.data;
 }
 
+// Adiciona item ao departamento
 async function addItem() {
-  if (!newItem.value) return;
-  await api.post("/items", { name: newItem.value });
+  if (!newItem.value.trim()) return;
+  await api.post(`/departments/${props.departmentId}/items`, { name: newItem.value });
   newItem.value = "";
   fetchItems();
 }
 
+// Atualiza itens quando departmentId muda
+watch(() => props.departmentId, fetchItems);
+
 onMounted(fetchItems);
 </script>
-

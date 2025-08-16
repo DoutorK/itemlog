@@ -1,0 +1,107 @@
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,26,36,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #23283a;
+  border-radius: 16px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  min-width: 320px;
+  max-width: 95vw;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid #2d3347;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.modal-title {
+  color: #f3f6fa;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+.modal-actions {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+.modal-input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #2d3347;
+  font-size: 1.05rem;
+  background: #23283a;
+  color: #f3f6fa;
+}
+.modal-btn {
+  background: #2196F3;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.modal-btn.edit {
+  background: #ffc107;
+  color: #23283a;
+}
+.modal-btn.delete {
+  background: #dc3545;
+}
+.modal-btn:hover {
+  filter: brightness(0.9);
+  transform: scale(1.05);
+}
+.modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem 0;
+}
+.modal-item {
+  background: #23283a;
+  border: 1px solid #2d3347;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.modal-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.modal-close {
+  background: #23283a;
+  color: #f3f6fa;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.modal-close:hover {
+  background: #181a24;
+}
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    min-width: 90vw;
+  }
+}

@@ -11,8 +11,11 @@
           <li v-for="item in items" :key="item.id" class="modal-item">
             <span>{{ item.name }}</span>
             <div class="modal-item-actions">
-              <button class="modal-btn edit" @click="editItem(item)">Editar</button>
-              <button class="modal-btn delete" @click="deleteItem(item.id)">Excluir</button>
+              <button class="dots-btn" @click="toggleMenu(item.id)">⋯</button>
+              <div v-if="menuOpen === item.id" class="item-menu">
+                <button class="item-menu-btn" @click="editItem(item); closeMenu()">Editar</button>
+                <button class="item-menu-btn delete" @click="deleteItem(item.id); closeMenu()">Excluir</button>
+              </div>
             </div>
           </li>
         </ul>
@@ -32,9 +35,17 @@ const emit = defineEmits(["updated"]);
 
 const items = ref<{ id: number; name: string }[]>([]);
 const newItem = ref("");
+const menuOpen = ref<number|null>(null);
 
 function close() {
   if (typeof props.onClose === 'function') props.onClose();
+}
+
+function toggleMenu(id: number) {
+  menuOpen.value = menuOpen.value === id ? null : id;
+}
+function closeMenu() {
+  menuOpen.value = null;
 }
 
 async function fetchItems() {

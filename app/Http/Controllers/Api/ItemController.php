@@ -44,6 +44,24 @@ class ItemController extends Controller
         return response()->json($item);
     }
 
+        public function itemsByDepartment($departmentId)
+    {
+        return Item::where('department_id', $departmentId)->get();
+    }
+
+    // Adiciona item a um departamento
+    public function storeForDepartment(Request $request, $departmentId)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $item = Item::create([
+            'name' => $validated['name'],
+            'department_id' => $departmentId,
+        ]);
+        return response()->json($item, 201);
+    }
+
 
     public function destroy(Item $item)
     {

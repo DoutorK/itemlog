@@ -1,3 +1,56 @@
+.modal-item-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.dots-btn {
+  background: none;
+  border: none;
+  color: #bfc8d6;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.18s;
+}
+.dots-btn:hover {
+  background: #23283a;
+}
+.item-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #23283a;
+  border: 1px solid #2d3347;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(30,34,44,0.12);
+  min-width: 120px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem 0;
+}
+.item-menu-btn {
+  background: none;
+  border: none;
+  color: #e7eaf3;
+  font-size: 0.98rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.item-menu-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+.item-menu-btn.delete {
+  color: #e74c3c;
+}
+.item-menu-btn.delete:hover {
+  background: #c0392b;
+  color: #fff;
+}
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -55,15 +108,28 @@
   transition: background 0.2s, transform 0.2s;
 }
 .modal-btn.edit {
-  background: #ffc107;
-  color: #23283a;
+  background: #f4f6fa;
+  color: #2563eb;
+  border: 1px solid #dbe2ea;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.08);
 }
 .modal-btn.delete {
-  background: #dc3545;
+  background: #e74c3c;
+  color: #fff;
+  border: 1px solid #e74c3c;
+  box-shadow: 0 1px 4px rgba(231,76,60,0.08);
 }
 .modal-btn:hover {
-  filter: brightness(0.9);
-  transform: scale(1.05);
+  filter: none;
+  background: #f0f2f8;
+  color: #2563eb;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.12);
+  transform: scale(1.04);
+}
+.modal-btn.delete:hover {
+  background: #c0392b;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.14);
 }
 .modal-list {
   list-style: none;

@@ -1,0 +1,81 @@
+.department-card {
+  background: #23283a;
+  border-radius: 14px;
+  padding: 1.2rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #2d3347;
+  transition: box-shadow 0.2s;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f3f6fa;
+  letter-spacing: 0.2px;
+  text-shadow: none;
+  max-width: 70vw;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.delete-btn, .toggle-btn {
+  border: none;
+  cursor: pointer;
+  width: 90px;
+  height: 36px;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  background: #23283a;
+  color: #f3f6fa;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  min-height: 36px;
+  max-width: 90px;
+  max-height: 36px;
+  box-sizing: border-box;
+}
+.delete-btn {
+  background: #dc3545;
+  color: #fff;
+}
+.toggle-btn {
+  background: #2196F3;
+  color: #fff;
+}
+.delete-btn:hover {
+  background: #b02a37;
+  color: #fff;
+  transform: scale(1.05);
+}
+.toggle-btn:hover {
+  background: #1976d2;
+  color: #fff;
+  transform: scale(1.05);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}

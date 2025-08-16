@@ -6,19 +6,25 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #181a24;
+    color: #f3f6fa;
     padding: 1rem;
+    transition: background 0.2s, color 0.2s;
 }
 
 .container {
     max-width: 900px;
     margin: auto;
+    background: #23283a;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    padding: 1.2rem 1rem;
+    border: 1px solid #2d3347;
 }
 
 
 @media (max-width: 768px) {
     .container {
-        padding: 0 1rem;
+        padding: 0.7rem 0.4rem;
     }
 }

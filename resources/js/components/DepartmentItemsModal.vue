@@ -70,7 +70,7 @@ async function deleteItem(id: number) {
 function editItem(item: { id: number; name: string }) {
   const novoNome = prompt("Editar nome do item:", item.name);
   if (novoNome && novoNome.trim() && novoNome !== item.name) {
-    api.put(`/departments/${props.department.id}/items/${item.id}`, { name: novoNome }).then(fetchItems);
+    api.put(`/items/${item.id}`, { name: novoNome, department_id: props.department.id }).then(fetchItems);
   }
 }
 

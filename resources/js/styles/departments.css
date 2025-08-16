@@ -25,6 +25,10 @@
   border-radius: 6px;
 }
 
+.edit-input {
+  flex: 1;
+}
+
 .add-btn {
   background-color: #4CAF50;
   color: white;
@@ -54,20 +58,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.item-btn,
+.edit-btn,
+.save-btn,
+.delete-btn {
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
 }
 
 .item-btn {
   background: #2196F3;
   color: white;
-  border: none;
-  padding: 0.4rem 0.7rem;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.1rem;
-  line-height: 1;
-  transition: background 0.3s;
 }
-
 .item-btn:hover {
   background: #1976d2;
+}
+
+.edit-btn {
+  background: #ffc107;
+}
+.edit-btn:hover {
+  background: #e0a800;
+}
+
+.save-btn {
+  background: #4CAF50;
+  color: white;
+}
+.save-btn:hover {
+  background: #45a049;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+.delete-btn:hover {
+  background: #b02a37;
 }

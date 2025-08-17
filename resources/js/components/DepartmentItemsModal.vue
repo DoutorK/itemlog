@@ -9,11 +9,17 @@
         </div>
         <ul class="modal-list">
           <li v-for="item in items" :key="item.id" class="modal-item">
-            <span>{{ item.name }}</span>
+            <template v-if="editingItem !== item.id">
+              <span>{{ item.name }}</span>
+            </template>
+            <template v-else>
+              <input v-model="editItemName" class="edit-input" @click.stop @keyup.enter="saveEditItem(item)" @blur="cancelEditItem" />
+              <button class="save-btn" @click.stop="saveEditItem(item)">Salvar</button>
+            </template>
             <div class="modal-item-actions">
-              <button class="dots-btn" @click="toggleMenu(item.id)">⋯</button>
-              <div v-if="menuOpen === item.id" class="item-menu">
-                <button class="item-menu-btn" @click="editItem(item); closeMenu()">Editar</button>
+              <button class="dots-btn" v-if="editingItem !== item.id" @click="toggleMenu(item.id)">⋯</button>
+              <div v-if="menuOpen === item.id && editingItem !== item.id" class="item-menu">
+                <button class="item-menu-btn" @click="startEditItem(item)">Editar</button>
                 <button class="item-menu-btn delete" @click="deleteItem(item.id); closeMenu()">Excluir</button>
               </div>
             </div>
@@ -36,6 +42,8 @@ const emit = defineEmits(["updated"]);
 const items = ref<{ id: number; name: string }[]>([]);
 const newItem = ref("");
 const menuOpen = ref<number|null>(null);
+const editingItem = ref<number|null>(null);
+const editItemName = ref("");
 
 function close() {
   if (typeof props.onClose === 'function') props.onClose();
@@ -46,6 +54,22 @@ function toggleMenu(id: number) {
 }
 function closeMenu() {
   menuOpen.value = null;
+}
+
+function startEditItem(item: { id: number; name: string }) {
+  closeMenu();
+  editingItem.value = item.id;
+  editItemName.value = item.name;
+}
+function cancelEditItem() {
+  editingItem.value = null;
+}
+async function saveEditItem(item: { id: number; name: string }) {
+  if (editItemName.value.trim() && editItemName.value !== item.name) {
+    await api.put(`/items/${item.id}`, { name: editItemName.value, department_id: props.department.id });
+    fetchItems();
+  }
+  editingItem.value = null;
 }
 
 async function fetchItems() {
@@ -65,13 +89,6 @@ async function deleteItem(id: number) {
   if (!confirm("Excluir item?")) return;
   await api.delete(`/items/${id}`);
   fetchItems();
-}
-
-function editItem(item: { id: number; name: string }) {
-  const novoNome = prompt("Editar nome do item:", item.name);
-  if (novoNome && novoNome.trim() && novoNome !== item.name) {
-    api.put(`/items/${item.id}`, { name: novoNome, department_id: props.department.id }).then(fetchItems);
-  }
 }
 
 watch(() => props.department, fetchItems);

@@ -12,18 +12,21 @@
   max-width: 220px;
 }
 .save-btn {
-  background: #2563eb;
-  color: #fff;
+  background: none;
+  color: #2563eb;
   border: none;
   border-radius: 8px;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.7rem;
   font-size: 0.98rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
+  margin-left: -0.3rem;
+  transition: background 0.16s, color 0.16s;
+  outline: none;
 }
 .save-btn:hover {
-  background: #1d4ed8;
+  background: #23283a;
+  color: #1d4ed8;
 }
 .dots-btn {
   background: none;

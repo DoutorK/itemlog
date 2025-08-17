@@ -5,8 +5,8 @@
         <h3>{{ department.name }}</h3>
       </template>
       <template v-else>
-        <input v-model="editName" class="edit-input" @keyup.enter="saveEdit" @blur="cancelEdit" />
-        <button class="save-btn" @click="saveEdit">Salvar</button>
+        <input v-model="editName" class="edit-input" @click.stop @keyup.enter="saveEdit" @blur="cancelEdit" />
+        <button class="save-btn" @click.stop="saveEdit">Salvar</button>
       </template>
       <div class="card-actions">
         <button class="dots-btn" @click.stop="toggleMenu">⋯</button>

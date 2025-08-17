@@ -7,7 +7,11 @@
           <input v-model="newItem" placeholder="Novo item" class="modal-input" />
           <button @click="addItem" class="modal-btn">Adicionar</button>
         </div>
-        <ul class="modal-list">
+        <div v-if="loading" class="modal-loading">
+          <span class="spinner"></span>
+          <span>Carregando itens...</span>
+        </div>
+        <ul v-else class="modal-list">
           <li v-for="item in items" :key="item.id" class="modal-item">
             <template v-if="editingItem !== item.id">
               <span>{{ item.name }}</span>
@@ -44,6 +48,7 @@ const newItem = ref("");
 const menuOpen = ref<number|null>(null);
 const editingItem = ref<number|null>(null);
 const editItemName = ref("");
+const loading = ref(false);
 
 function close() {
   if (typeof props.onClose === 'function') props.onClose();
@@ -74,8 +79,13 @@ async function saveEditItem(item: { id: number; name: string }) {
 
 async function fetchItems() {
   if (!props.department) return;
-  const res = await api.get(`/departments/${props.department.id}/items`);
-  items.value = res.data;
+  loading.value = true;
+  try {
+    const res = await api.get(`/departments/${props.department.id}/items`);
+    items.value = res.data;
+  } finally {
+    loading.value = false;
+  }
 }
 
 async function addItem() {

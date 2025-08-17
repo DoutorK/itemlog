@@ -1,11 +1,17 @@
 <template>
   <div class="department-card department-card-clickable" @click="openModal">
     <div class="card-header">
-      <h3>{{ department.name }}</h3>
+      <template v-if="!editing">
+        <h3>{{ department.name }}</h3>
+      </template>
+      <template v-else>
+        <input v-model="editName" class="edit-input" @keyup.enter="saveEdit" @blur="cancelEdit" />
+        <button class="save-btn" @click="saveEdit">Salvar</button>
+      </template>
       <div class="card-actions">
         <button class="dots-btn" @click.stop="toggleMenu">⋯</button>
-        <div v-if="menuOpen" class="item-menu">
-          <button class="item-menu-btn" @click.stop="editDepartment">Editar</button>
+        <div v-if="menuOpen && !editing" class="item-menu">
+          <button class="item-menu-btn" @click.stop="startEdit">Editar</button>
           <button class="item-menu-btn delete" @click.stop="deleteDepartment">Excluir</button>
         </div>
       </div>
@@ -31,6 +37,8 @@ const emit = defineEmits(["updated"]);
 
 const showModal = ref(false);
 const menuOpen = ref(false);
+const editing = ref(false);
+const editName = ref(props.department.name);
 
 function openModal() {
   showModal.value = true;
@@ -53,12 +61,20 @@ async function deleteDepartment() {
   emit("updated");
 }
 
-function editDepartment() {
+function startEdit() {
   closeMenu();
-  const novoNome = prompt("Editar nome do departamento:", props.department.name);
-  if (novoNome && novoNome.trim() && novoNome !== props.department.name) {
-    api.put(`/departments/${props.department.id}`, { name: novoNome }).then(() => emit("updated"));
+  editName.value = props.department.name;
+  editing.value = true;
+}
+function cancelEdit() {
+  editing.value = false;
+}
+async function saveEdit() {
+  if (editName.value.trim() && editName.value !== props.department.name) {
+    await api.put(`/departments/${props.department.id}`, { name: editName.value });
+    emit("updated");
   }
+  editing.value = false;
 }
 
 </script>

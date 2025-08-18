@@ -66,7 +66,11 @@ class ItemController extends Controller
 
     public function itemsByDepartment($departmentId)
     {
-        return Item::where('department_id', $departmentId)->get();
+        try {
+            return Item::where('department_id', $departmentId)->get();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar itens do departamento', 'message' => $e->getMessage()], 500);
+        }
     }
 
     // Adiciona item a um departamento

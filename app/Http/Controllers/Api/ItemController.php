@@ -49,16 +49,22 @@ class ItemController extends Controller
 
     public function update(Request $request, Item $item)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'department_id' => 'required|exists:departments,id',
-            // Adicione outros campos conforme necessário
-        ]);
-        $item->update($validated);
-        return response()->json($item);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'department_id' => 'required|exists:departments,id',
+                // Adicione outros campos conforme necessário
+            ]);
+            $item->update($validated);
+            return response()->json($item);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['error' => 'Dados inválidos', 'messages' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao atualizar item', 'message' => $e->getMessage()], 500);
+        }
     }
 
-        public function itemsByDepartment($departmentId)
+    public function itemsByDepartment($departmentId)
     {
         return Item::where('department_id', $departmentId)->get();
     }

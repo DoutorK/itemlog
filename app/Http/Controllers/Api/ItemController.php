@@ -39,7 +39,11 @@ class ItemController extends Controller
 
     public function show(Item $item)
     {
-        return $item;
+        try {
+            return $item;
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar item', 'message' => $e->getMessage()], 500);
+        }
     }
 
 

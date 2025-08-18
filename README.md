@@ -58,7 +58,7 @@ Frontend:
 npm run dev
 ```
 
-Acesse o frontend em `http://localhost:5173` (ou porta configurada pelo Vite).
+Acesse o projeto em `http://localhost:8000` (ou porta configurada pelo Vite, que o padrão desse projeto é a mesma do backend).
 
 ---
 

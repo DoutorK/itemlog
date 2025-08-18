@@ -47,11 +47,17 @@ class DepartmentController extends Controller
 
     public function update(Request $request, Department $department)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-        $department->update($validated);
-        return response()->json($department, 200);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+            ]);
+            $department->update($validated);
+            return response()->json($department, 200);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['error' => 'Dados inválidos', 'messages' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao atualizar departamento', 'message' => $e->getMessage()], 500);
+        }
     }
 
     public function destroy(Department $department)

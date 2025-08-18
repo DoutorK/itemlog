@@ -37,7 +37,11 @@ class DepartmentController extends Controller
 
     public function show(Department $department)
     {
-        return $department;
+        try {
+            return $department;
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar departamento', 'message' => $e->getMessage()], 500);
+        }
     }
 
 

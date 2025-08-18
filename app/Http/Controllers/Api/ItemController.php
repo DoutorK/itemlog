@@ -21,13 +21,19 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'department_id' => 'required|exists:departments,id',
-            // Adicione outros campos conforme necessário
-        ]);
-        $item = Item::create($validated);
-        return response()->json($item, 201);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'department_id' => 'required|exists:departments,id',
+                // Adicione outros campos conforme necessário
+            ]);
+            $item = Item::create($validated);
+            return response()->json($item, 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['error' => 'Dados inválidos', 'messages' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao criar item', 'message' => $e->getMessage()], 500);
+        }
     }
 
 

@@ -95,7 +95,11 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
-        $item->delete();
-        return response()->json(null, 204);
+        try {
+            $item->delete();
+            return response()->json(null, 204);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao excluir item', 'message' => $e->getMessage()], 500);
+        }
     }
 }

@@ -11,7 +11,11 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        return Department::all();
+        try {
+            return Department::all();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar departamentos', 'message' => $e->getMessage()], 500);
+        }
     }
 
 

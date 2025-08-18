@@ -21,11 +21,17 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-        $department = Department::create($validated);
-        return response()->json($department, 201);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+            ]);
+            $department = Department::create($validated);
+            return response()->json($department, 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['error' => 'Dados inválidos', 'messages' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao criar departamento', 'message' => $e->getMessage()], 500);
+        }
     }
 
 

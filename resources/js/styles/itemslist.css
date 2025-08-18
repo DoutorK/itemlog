@@ -1,0 +1,75 @@
+.items-container {
+  margin-top: 1.2rem;
+  background: #23283a;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  padding: 1rem 1rem 0.9rem 1rem;
+  border: 1px solid #2d3347;
+}
+.add-item {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+}
+.add-item .input-field {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #2d3347;
+  font-size: 1.02rem;
+  background: #23283a;
+  color: #f3f6fa;
+  box-shadow: none;
+  transition: border 0.2s;
+}
+.add-item .input-field:focus {
+  border: 1.5px solid #2196F3;
+  outline: none;
+}
+.add-item .add-btn {
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  box-shadow: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.add-item .add-btn:hover {
+  background: #388e3c;
+  transform: scale(1.05);
+}
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.item {
+  background: #23283a;
+  border: 1px solid #2d3347;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  box-shadow: none;
+}
+.item .delete-btn {
+  background: #dc3545;
+  border: none;
+  color: #fff;
+  padding: 0.35rem 0.8rem;
+  border-radius: 7px;
+  font-size: 0.97rem;
+  font-weight: 500;
+  box-shadow: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.item .delete-btn:hover {
+  background: #b02a37;
+  transform: scale(1.05);
+}

@@ -1,0 +1,54 @@
+.add-department {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+  background: #23283a;
+  border-radius: 12px;
+  padding: 1rem 1rem 0.9rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  align-items: flex-end;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #2d3347;
+}
+.input-field {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 0.7rem 1rem;
+  border: 1px solid #2d3347;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  background: #23283a;
+  color: #f3f6fa;
+  box-shadow: none;
+  transition: border 0.2s;
+}
+.input-field:focus {
+  border: 1.5px solid #2196F3;
+  outline: none;
+}
+.add-btn {
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.08rem;
+  font-weight: 600;
+  box-shadow: none;
+  transition: background 0.2s, transform 0.2s;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.add-btn:hover {
+  background: #388e3c;
+  transform: scale(1.05);
+}
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.1rem;
+  padding-bottom: 1.2rem;
+}

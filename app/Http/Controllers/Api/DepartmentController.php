@@ -62,7 +62,11 @@ class DepartmentController extends Controller
 
     public function destroy(Department $department)
     {
-        $department->delete();
-        return response()->json(null, 204);
+        try {
+            $department->delete();
+            return response()->json(null, 204);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao excluir departamento', 'message' => $e->getMessage()], 500);
+        }
     }
 }

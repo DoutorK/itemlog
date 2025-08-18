@@ -76,14 +76,20 @@ class ItemController extends Controller
     // Adiciona item a um departamento
     public function storeForDepartment(Request $request, $departmentId)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-        $item = Item::create([
-            'name' => $validated['name'],
-            'department_id' => $departmentId,
-        ]);
-        return response()->json($item, 201);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+            ]);
+            $item = Item::create([
+                'name' => $validated['name'],
+                'department_id' => $departmentId,
+            ]);
+            return response()->json($item, 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['error' => 'Dados inválidos', 'messages' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao criar item para departamento', 'message' => $e->getMessage()], 500);
+        }
     }
 
 

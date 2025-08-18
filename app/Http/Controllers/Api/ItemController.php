@@ -11,7 +11,11 @@ class ItemController extends Controller
 
     public function index()
     {
-        return Item::all();
+        try {
+            return Item::all();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar itens', 'message' => $e->getMessage()], 500);
+        }
     }
 
 
